@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Еламан & Толганай – Үйлену тойына шақыру</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .container {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      height: 100vh;
+    }
+
+    section {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 2rem;
+      border-radius: 25px;
+      border: 5px solid;
+      border-image: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb) 1;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      max-width: 90%;
+      color: #222;
+      animation: fadeIn 1.5s ease-in-out;
+      z-index: 1;
+    }
+
+    section:nth-child(even) {
+      background: linear-gradient(to right, #a18cd1, #fbc2eb);
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #222;
+    }
+
+    .countdown-box {
+      margin-top: 1rem;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 8px solid #fff;
+      background: rgba(255,255,255,0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      color: #222;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .map-button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      background: #ee9ca7;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .heart {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      animation: float 10s linear infinite;
+    }
+
+    @keyframes float {
+      0% {transform: translateY(0) scale(1); opacity: 1;}
+      100% {transform: translateY(-100vh) scale(1.5); opacity: 0;}
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    audio {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 1.6rem; }
+      p { font-size: 1rem; }
+    }
+
+    .rsvp-form {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .rsvp-form input,
+    .rsvp-form select,
+    .rsvp-form button {
+      padding: 0.7rem;
+      font-size: 1rem;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .rsvp-form button {
+      background-color: #f68ca1;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    .invitation-box {
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.85);
+      border: 4px dashed #f8b6c2;
+      max-width: 700px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-style: italic;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <section>
+    <div class="card">
+      <h1>Еламан & Толганай</h1>
+      <div class="invitation-box">
+        Құрметті туыстар мен достар!  
+        <br><br>
+        Сіздерді өміріміздің ең қуанышты күндерінің бірі – үйлену тойымызға  
+        шын жүректен шақырамыз.  
+        Бізбен бірге осы ерекше сәттің куәсі болуға асығыңыз!
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>Той уақыты</h2>
+      <p>20 Қыркүйек 2025 жыл</p>
+      <p>сағат 18:00-де</p>
+      <div class="countdown-box" id="countdown">Жүктелуде...</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>Мекенжай</h2>
+      <p>Семей қаласы</p>
+      <p>Әуезова даңғылы, 114/1</p>
+      <p>"Ballroom" мейрамханасы</p>
+      <a class="map-button" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Семей+Әуезова+114%2F1">Картаға өту</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>Той иелері</h2>
+      <p>Әкесі Ерлан</p>
+      <p>Анасы Динара</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>Сіз келесіз бе?</h2>
+      <form class="rsvp-form">
+        <input type="text" placeholder="Атыңызды енгізіңіз" required />
+        <select required>
+          <option value="">Қатысасыз ба?</option>
+          <option value="yes">Иә</option>
+          <option value="no">Жоқ</option>
+        </select>
+        <button type="submit">Жіберу</button>
+      </form>
+    </div>
+  </section>
+
+</div>
+
+<audio id="bgMusic" autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2023/08/16/audio_2c6e7307a6.mp3" type="audio/mp3">
+</audio>
+
+<script>
+  // Countdown
+  const countdown = document.getElementById("countdown");
+  const weddingDate = new Date("2025-09-20T18:00:00");
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+      countdown.innerText = "Той басталды!";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    countdown.innerText = `${days} күн\n${hours} сағ\n${minutes} мин\n${seconds} сек`;
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // Hearts
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerText = Math.random() > 0.5 ? '❤️' : '💖';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.top = Math.random() * 100 + 'vh';
+    heart.style.fontSize = (14 + Math.random() * 20) + 'px';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 10000);
+  }
+
+  setInterval(createHeart, 600);
+
+  // Enable music after user interaction
+  document.body.addEventListener('click', () => {
+    const music = document.getElementById("bgMusic");
+    if (music.paused) music.play();
+  }, { once: true });
+</script>
+
+</body>
+</html>
